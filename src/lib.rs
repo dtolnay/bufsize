@@ -43,9 +43,7 @@ pub struct SizeCounter {
 
 impl SizeCounter {
     pub fn new() -> Self {
-        SizeCounter {
-            count: 0,
-        }
+        SizeCounter { count: 0 }
     }
 
     pub fn size(&self) -> usize {
