@@ -34,6 +34,7 @@ use bytes::{Buf, BufMut, IntoBuf};
 ///     assert_eq!(sizecount.size(), buffer.len());
 /// }
 /// ```
+#[derive(Debug)]
 pub struct SizeCounter {
     count: usize,
 }
