@@ -3,3 +3,9 @@ name = "bufsize"
 version = "0.0.0"
 authors = ["David Tolnay <dtolnay@gmail.com>"]
 edition = "2018"
+
+[dependencies]
+bytes = "0.4"
+
+[features]
+i128 = ["bytes/i128"]
