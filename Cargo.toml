@@ -1,7 +1,7 @@
 [package]
 name = "bufsize"
 version = "0.0.0" # remember to update html_root_url
-authors = ["David Tolnay <dtolnay@gmail.com>"]
+authors = ["David Tolnay <dtolnay@gmail.com>", "Jeremy Fitzhardinge <jeremy@goop.org>"]
 edition = "2018"
 
 [dependencies]
