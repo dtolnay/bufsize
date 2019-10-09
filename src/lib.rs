@@ -1,3 +1,5 @@
+#![allow(clippy::needless_doctest_main, clippy::new_without_default)]
+
 use bytes::{Buf, BufMut, IntoBuf};
 
 /// Implementation of [`BufMut`] to count the size of a resulting buffer.
