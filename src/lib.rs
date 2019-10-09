@@ -5,6 +5,35 @@ use bytes::{Buf, BufMut, IntoBuf};
 /// This effectively requires the data to be serialized twice, but in many use
 /// cases inlining allows most of the effort of generating actual data to be
 /// elided.
+///
+/// # Example
+///
+/// ```
+/// use bufsize::SizeCounter;
+/// use bytes::BufMut;
+///
+/// pub struct DataStructure;
+///
+/// impl DataStructure {
+///     pub fn serialize<B: BufMut>(&self, buf: &mut B) {
+///         let name = "DataStructure";
+///         buf.put_u8(name.len() as u8);
+///         buf.put_slice(name.as_bytes());
+///         buf.put_u32_le(9999);
+///         buf.put_f32_le(1.0);
+///     }
+/// }
+///
+/// fn main() {
+///     let mut sizecount = SizeCounter::new();
+///     DataStructure.serialize(&mut sizecount);
+///
+///     let mut buffer = Vec::with_capacity(sizecount.size());
+///     DataStructure.serialize(&mut buffer);
+///
+///     assert_eq!(sizecount.size(), buffer.len());
+/// }
+/// ```
 pub struct SizeCounter {
     count: usize,
 }
