@@ -10,7 +10,4 @@ documentation = "https://docs.rs/bufsize"
 readme = "README.md"
 
 [dependencies]
-bytes = "0.4"
-
-[features]
-i128 = ["bytes/i128"]
+bytes = "0.5"

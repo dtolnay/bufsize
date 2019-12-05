@@ -1,7 +1,8 @@
 #![doc(html_root_url = "https://docs.rs/bufsize/0.4.0")]
 #![allow(clippy::needless_doctest_main, clippy::new_without_default)]
 
-use bytes::{Buf, BufMut, IntoBuf};
+use bytes::buf::{Buf, BufMut, IoSliceMut};
+use std::mem::MaybeUninit;
 
 /// Implementation of [`BufMut`] to count the size of a resulting buffer.
 ///
@@ -63,20 +64,25 @@ impl BufMut for SizeCounter {
         let _ = cnt;
     }
 
-    unsafe fn bytes_mut(&mut self) -> &mut [u8] {
-        unimplemented!("SizeCounter doesn't really have a buffer")
-    }
-
     #[inline]
     fn has_remaining_mut(&self) -> bool {
         true
     }
 
-    fn put<T: IntoBuf>(&mut self, src: T)
+    fn bytes_mut(&mut self) -> &mut [MaybeUninit<u8>] {
+        unimplemented!("SizeCounter doesn't really have a buffer")
+    }
+
+    fn bytes_vectored_mut<'a>(&'a mut self, dst: &mut [IoSliceMut<'a>]) -> usize {
+        let _ = dst;
+        unimplemented!("SizeCounter doesn't really have a buffer")
+    }
+
+    fn put<T: Buf>(&mut self, src: T)
     where
         Self: Sized,
     {
-        self.count += src.into_buf().remaining();
+        self.count += src.remaining();
     }
 
     #[inline]
@@ -97,7 +103,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_u16_be(&mut self, n: u16) {
+    fn put_u16(&mut self, n: u16) {
         let _ = n;
         self.count += 2;
     }
@@ -109,7 +115,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_i16_be(&mut self, n: i16) {
+    fn put_i16(&mut self, n: i16) {
         let _ = n;
         self.count += 2;
     }
@@ -121,7 +127,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_u32_be(&mut self, n: u32) {
+    fn put_u32(&mut self, n: u32) {
         let _ = n;
         self.count += 4;
     }
@@ -133,7 +139,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_i32_be(&mut self, n: i32) {
+    fn put_i32(&mut self, n: i32) {
         let _ = n;
         self.count += 4;
     }
@@ -145,7 +151,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_u64_be(&mut self, n: u64) {
+    fn put_u64(&mut self, n: u64) {
         let _ = n;
         self.count += 8;
     }
@@ -157,7 +163,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_i64_be(&mut self, n: i64) {
+    fn put_i64(&mut self, n: i64) {
         let _ = n;
         self.count += 8;
     }
@@ -168,28 +174,24 @@ impl BufMut for SizeCounter {
         self.count += 8;
     }
 
-    #[cfg(feature = "i128")]
     #[inline]
-    fn put_u128_be(&mut self, n: u128) {
+    fn put_u128(&mut self, n: u128) {
         let _ = n;
         self.count += 16;
     }
 
-    #[cfg(feature = "i128")]
     #[inline]
     fn put_u128_le(&mut self, n: u128) {
         let _ = n;
         self.count += 16;
     }
 
-    #[cfg(feature = "i128")]
     #[inline]
-    fn put_i128_be(&mut self, n: i128) {
+    fn put_i128(&mut self, n: i128) {
         let _ = n;
         self.count += 16;
     }
 
-    #[cfg(feature = "i128")]
     #[inline]
     fn put_i128_le(&mut self, n: i128) {
         let _ = n;
@@ -197,7 +199,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_uint_be(&mut self, n: u64, nbytes: usize) {
+    fn put_uint(&mut self, n: u64, nbytes: usize) {
         let _ = n;
         self.count += nbytes;
     }
@@ -209,7 +211,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_int_be(&mut self, n: i64, nbytes: usize) {
+    fn put_int(&mut self, n: i64, nbytes: usize) {
         let _ = n;
         self.count += nbytes;
     }
@@ -221,7 +223,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_f32_be(&mut self, n: f32) {
+    fn put_f32(&mut self, n: f32) {
         let _ = n;
         self.count += 4;
     }
@@ -233,7 +235,7 @@ impl BufMut for SizeCounter {
     }
 
     #[inline]
-    fn put_f64_be(&mut self, n: f64) {
+    fn put_f64(&mut self, n: f64) {
         let _ = n;
         self.count += 8;
     }
