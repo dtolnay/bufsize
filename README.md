@@ -15,7 +15,7 @@ of a resulting buffer.
 bufsize = "0.4"
 ```
 
-*Compiler support: requires rustc 1.31+*
+*Compiler support: requires rustc 1.39+*
 
 <br>
 
