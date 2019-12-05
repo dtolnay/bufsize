@@ -1,4 +1,4 @@
-#![doc(html_root_url = "https://docs.rs/bufsize/0.4.0")]
+#![doc(html_root_url = "https://docs.rs/bufsize/0.5.0")]
 #![allow(clippy::needless_doctest_main, clippy::new_without_default)]
 
 use bytes::buf::{Buf, BufMut, IoSliceMut};
