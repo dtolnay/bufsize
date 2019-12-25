@@ -9,5 +9,8 @@ repository = "https://github.com/dtolnay/bufsize"
 documentation = "https://docs.rs/bufsize"
 readme = "README.md"
 
+[badges]
+travis-ci = { repository = "dtolnay/bufsize" }
+
 [dependencies]
 bytes = "0.5"
