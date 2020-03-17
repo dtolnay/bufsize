@@ -14,3 +14,6 @@ travis-ci = { repository = "dtolnay/bufsize" }
 
 [dependencies]
 bytes = "0.5"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
