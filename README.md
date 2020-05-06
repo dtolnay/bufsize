@@ -1,7 +1,7 @@
 bufsize::SizeCounter
 ====================
 
-[![Build Status](https://api.travis-ci.com/dtolnay/bufsize.svg?branch=master)](https://travis-ci.com/dtolnay/bufsize)
+[![Build Status](https://img.shields.io/github/workflow/status/dtolnay/bufsize/CI/master)](https://github.com/dtolnay/bufsize/actions?query=branch%3Amaster)
 [![Latest Version](https://img.shields.io/crates/v/bufsize.svg)](https://crates.io/crates/bufsize)
 [![Rust Documentation](https://img.shields.io/badge/api-rustdoc-blue.svg)](https://docs.rs/bufsize)
 
