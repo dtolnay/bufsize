@@ -1,6 +1,6 @@
 [package]
 name = "bufsize"
-version = "0.5.1" # remember to update html_root_url
+version = "0.6.0" # remember to update html_root_url
 authors = ["David Tolnay <dtolnay@gmail.com>", "Jeremy Fitzhardinge <jeremy@goop.org>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"

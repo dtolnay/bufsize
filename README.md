@@ -13,7 +13,7 @@ of a resulting buffer.
 
 ```toml
 [dependencies]
-bufsize = "0.5"
+bufsize = "0.6"
 ```
 
 *Compiler support: requires rustc 1.39+*
