@@ -7,8 +7,7 @@
 #![doc(html_root_url = "https://docs.rs/bufsize/0.5.1")]
 #![allow(clippy::needless_doctest_main, clippy::new_without_default)]
 
-use bytes::buf::{Buf, BufMut, IoSliceMut};
-use std::mem::MaybeUninit;
+use bytes::buf::{Buf, BufMut, UninitSlice};
 
 /// Implementation of [`BufMut`] to count the size of a resulting buffer.
 ///
@@ -59,7 +58,7 @@ impl SizeCounter {
     }
 }
 
-impl BufMut for SizeCounter {
+unsafe impl BufMut for SizeCounter {
     #[inline]
     fn remaining_mut(&self) -> usize {
         usize::max_value()
@@ -70,18 +69,13 @@ impl BufMut for SizeCounter {
         let _ = cnt;
     }
 
+    fn bytes_mut(&mut self) -> &mut UninitSlice {
+        unimplemented!("SizeCounter doesn't really have a buffer")
+    }
+
     #[inline]
     fn has_remaining_mut(&self) -> bool {
         true
-    }
-
-    fn bytes_mut(&mut self) -> &mut [MaybeUninit<u8>] {
-        unimplemented!("SizeCounter doesn't really have a buffer")
-    }
-
-    fn bytes_vectored_mut<'a>(&'a mut self, dst: &mut [IoSliceMut<'a>]) -> usize {
-        let _ = dst;
-        unimplemented!("SizeCounter doesn't really have a buffer")
     }
 
     fn put<T: Buf>(&mut self, src: T)
