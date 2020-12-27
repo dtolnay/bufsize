@@ -10,7 +10,7 @@ documentation = "https://docs.rs/bufsize"
 readme = "README.md"
 
 [dependencies]
-bytes = "0.5"
+bytes = "0.6"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
