@@ -69,7 +69,7 @@ unsafe impl BufMut for SizeCounter {
         let _ = cnt;
     }
 
-    fn bytes_mut(&mut self) -> &mut UninitSlice {
+    fn chunk_mut(&mut self) -> &mut UninitSlice {
         unimplemented!("SizeCounter doesn't really have a buffer")
     }
 
