@@ -2,13 +2,13 @@
 name = "bufsize"
 version = "1.0.1" # remember to update html_root_url
 authors = ["David Tolnay <dtolnay@gmail.com>", "Jeremy Fitzhardinge <jeremy@goop.org>"]
-edition = "2018"
-rust-version = "1.39"
-license = "MIT OR Apache-2.0"
 description = "bytes::BufMut implementation to count buffer size"
-repository = "https://github.com/dtolnay/bufsize"
 documentation = "https://docs.rs/bufsize"
+edition = "2018"
+license = "MIT OR Apache-2.0"
 readme = "README.md"
+repository = "https://github.com/dtolnay/bufsize"
+rust-version = "1.39"
 
 [dependencies]
 bytes = "1.0"
