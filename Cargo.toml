@@ -8,7 +8,6 @@ documentation = "https://docs.rs/bufsize"
 edition = "2018"
 keywords = ["bytes"]
 license = "MIT OR Apache-2.0"
-readme = "README.md"
 repository = "https://github.com/dtolnay/bufsize"
 rust-version = "1.39"
 
