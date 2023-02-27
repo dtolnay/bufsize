@@ -6,6 +6,7 @@
 
 #![doc(html_root_url = "https://docs.rs/bufsize/1.0.4")]
 #![allow(
+    clippy::let_underscore_untyped,
     clippy::must_use_candidate,
     clippy::needless_doctest_main,
     clippy::new_without_default
