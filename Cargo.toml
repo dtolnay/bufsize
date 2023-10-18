@@ -1,6 +1,6 @@
 [package]
 name = "bufsize"
-version = "1.0.6" # remember to update html_root_url
+version = "1.0.6"
 authors = ["David Tolnay <dtolnay@gmail.com>", "Jeremy Fitzhardinge <jeremy@goop.org>"]
 categories = ["network-programming", "memory-management"]
 description = "bytes::BufMut implementation to count buffer size"
