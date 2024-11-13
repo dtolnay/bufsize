@@ -4,6 +4,7 @@
 //! [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 //! [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
+#![no_std]
 #![doc(html_root_url = "https://docs.rs/bufsize/1.0.7")]
 #![allow(
     clippy::let_underscore_untyped,
@@ -12,7 +13,11 @@
     clippy::new_without_default
 )]
 
+#[cfg(feature = "std")]
+extern crate std;
+
 use bytes::buf::{Buf, BufMut, UninitSlice};
+#[cfg(feature = "std")]
 use std::io::{self, Write};
 
 /// Implementation of [`BufMut`] to count the size of a resulting buffer.
@@ -253,6 +258,7 @@ unsafe impl BufMut for SizeCounter {
     }
 }
 
+#[cfg(feature = "std")]
 impl Write for SizeCounter {
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
         self.count += buf.len();

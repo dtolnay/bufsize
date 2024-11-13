@@ -11,8 +11,12 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/dtolnay/bufsize"
 rust-version = "1.39"
 
+[features]
+default = ["std"]
+std = ["bytes/std"]
+
 [dependencies]
-bytes = "1.0"
+bytes = { version = "1.0", default-features = false }
 
 [lib]
 doc-scrape-examples = false
