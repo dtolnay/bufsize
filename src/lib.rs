@@ -18,7 +18,7 @@ extern crate std;
 
 use bytes::buf::{Buf, BufMut, UninitSlice};
 #[cfg(feature = "std")]
-use std::io::{self, Write};
+use std::io::{self, IoSlice, Write};
 
 /// Implementation of [`BufMut`] to count the size of a resulting buffer.
 ///
@@ -270,6 +270,15 @@ impl Write for SizeCounter {
     fn write_all(&mut self, buf: &[u8]) -> io::Result<()> {
         self.count += buf.len();
         Ok(())
+    }
+
+    fn write_vectored(&mut self, bufs: &[IoSlice]) -> io::Result<usize> {
+        let mut sum = 0;
+        for buf in bufs {
+            sum += buf.len();
+        }
+        self.count += sum;
+        Ok(sum)
     }
 
     #[inline]
