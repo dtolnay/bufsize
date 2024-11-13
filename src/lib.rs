@@ -5,7 +5,7 @@
 //! [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
 #![no_std]
-#![doc(html_root_url = "https://docs.rs/bufsize/1.0.7")]
+#![doc(html_root_url = "https://docs.rs/bufsize/1.0.8")]
 #![allow(
     clippy::let_underscore_untyped,
     clippy::must_use_candidate,
