@@ -13,6 +13,7 @@
 )]
 
 use bytes::buf::{Buf, BufMut, UninitSlice};
+use std::io::{self, Write};
 
 /// Implementation of [`BufMut`] to count the size of a resulting buffer.
 ///
@@ -249,5 +250,16 @@ unsafe impl BufMut for SizeCounter {
     fn put_f64_le(&mut self, n: f64) {
         let _ = n;
         self.count += 8;
+    }
+}
+
+impl Write for SizeCounter {
+    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+        self.count += buf.len();
+        Ok(buf.len())
+    }
+
+    fn flush(&mut self) -> io::Result<()> {
+        Ok(())
     }
 }
