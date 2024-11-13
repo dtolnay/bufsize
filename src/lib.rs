@@ -267,6 +267,12 @@ impl Write for SizeCounter {
     }
 
     #[inline]
+    fn write_all(&mut self, buf: &[u8]) -> io::Result<()> {
+        self.count += buf.len();
+        Ok(())
+    }
+
+    #[inline]
     fn flush(&mut self) -> io::Result<()> {
         Ok(())
     }
