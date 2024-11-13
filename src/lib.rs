@@ -260,11 +260,13 @@ unsafe impl BufMut for SizeCounter {
 
 #[cfg(feature = "std")]
 impl Write for SizeCounter {
+    #[inline]
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
         self.count += buf.len();
         Ok(buf.len())
     }
 
+    #[inline]
     fn flush(&mut self) -> io::Result<()> {
         Ok(())
     }
