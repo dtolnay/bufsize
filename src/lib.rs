@@ -20,13 +20,14 @@ use bytes::buf::{Buf, BufMut, UninitSlice};
 #[cfg(feature = "std")]
 use std::io::{self, IoSlice, Write};
 
-/// Implementation of [`BufMut`] to count the size of a resulting buffer.
+/// Implementation of [`BufMut`] and [`Write`] to count the size of a resulting
+/// buffer.
 ///
 /// This effectively requires the data to be serialized twice, but in many use
 /// cases inlining allows most of the effort of generating actual data to be
 /// elided.
 ///
-/// # Example
+/// # Example: BufMut
 ///
 /// ```
 /// use bufsize::SizeCounter;
@@ -52,6 +53,29 @@ use std::io::{self, IoSlice, Write};
 ///     DataStructure.serialize(&mut buffer);
 ///
 ///     assert_eq!(sizecount.size(), buffer.len());
+///     assert_eq!(sizecount.size(), buffer.capacity());
+/// }
+/// ```
+///
+/// # Example: Write
+///
+/// ```
+/// # use anyhow::Result;
+/// use bufsize::SizeCounter;
+/// use serde_json::json;
+///
+/// fn main() -> Result<()> {
+///     let value = json!({ /* ... */ });
+///
+///     let mut sizecount = SizeCounter::new();
+///     serde_json::to_writer(&mut sizecount, &value)?;
+///
+///     let mut buffer = Vec::with_capacity(sizecount.size());
+///     serde_json::to_writer(&mut buffer, &value)?;
+///
+///     assert_eq!(sizecount.size(), buffer.len());
+///     assert_eq!(sizecount.size(), buffer.capacity());
+///     Ok(())
 /// }
 /// ```
 #[derive(Debug)]
