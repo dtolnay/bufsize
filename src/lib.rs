@@ -27,7 +27,7 @@ use std::io::{self, IoSlice, Write};
 /// cases inlining allows most of the effort of generating actual data to be
 /// elided.
 ///
-/// # Example: BufMut
+/// # Example: `BufMut`
 ///
 /// ```
 /// use bufsize::SizeCounter;
@@ -57,7 +57,7 @@ use std::io::{self, IoSlice, Write};
 /// }
 /// ```
 ///
-/// # Example: Write
+/// # Example: `Write`
 ///
 /// ```
 /// # use anyhow::Result;
