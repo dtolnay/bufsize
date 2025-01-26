@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rust: [nightly, beta, stable, 1.39.0]
+        rust: [nightly, beta, stable, 1.56.0]
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -42,6 +42,17 @@ jobs:
           name: Cargo.lock
           path: Cargo.lock
         continue-on-error: true
+
+  msrv:
+    name: Rust 1.39.0
+    needs: pre_ci
+    if: needs.pre_ci.outputs.continue
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.39.0
+      - run: cargo check
 
   minimal:
     name: Minimal versions
