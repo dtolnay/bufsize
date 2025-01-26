@@ -6,6 +6,7 @@
 
 #![no_std]
 #![doc(html_root_url = "https://docs.rs/bufsize/1.0.8")]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(
     clippy::let_underscore_untyped,
     clippy::must_use_candidate,
@@ -283,6 +284,7 @@ unsafe impl BufMut for SizeCounter {
 }
 
 #[cfg(feature = "std")]
+#[cfg_attr(docsrs, doc(cfg(feature = "std")))]
 impl Write for SizeCounter {
     #[inline]
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
