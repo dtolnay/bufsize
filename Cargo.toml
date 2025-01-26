@@ -18,6 +18,10 @@ std = []
 [dependencies]
 bytes = { version = "1.0", default-features = false }
 
+[dev-dependencies]
+anyhow = "1"
+serde_json = "1"
+
 [lib]
 doc-scrape-examples = false
 
