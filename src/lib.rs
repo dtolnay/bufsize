@@ -97,7 +97,7 @@ impl SizeCounter {
 unsafe impl BufMut for SizeCounter {
     #[inline]
     fn remaining_mut(&self) -> usize {
-        usize::max_value()
+        usize::MAX
     }
 
     #[inline]
