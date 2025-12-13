@@ -9,7 +9,7 @@ edition = "2018"
 keywords = ["bytes"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/dtolnay/bufsize"
-rust-version = "1.57"
+rust-version = "1.68"
 
 [features]
 default = ["std"]
